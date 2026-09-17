@@ -1,5 +1,16 @@
 # Changelog
 
+## v1.6.5   17sep2026
+
+### Fixed
+
+- **The Stata requirement is `StataNow 19.5`**, stated the same way everywhere.
+  The README had said `StataNow/MP 19.5`, which overstates it: `MP` is a
+  flavour, so a `StataNow/SE` user who can run `jmqaly` perfectly well would
+  have read that and concluded otherwise. The package file, the help and this
+  changelog had said plain `Stata 19.5`, which understates it by omitting
+  `StataNow`. Three spellings across four places; now one.
+
 ## v1.6.4   17sep2026
 
 ### Changed
@@ -113,7 +124,7 @@
 
 ### Changed
 
-- **Requires Stata 19.5.** `jmqaly` declared `version 18` until now. This is
+- **Requires StataNow 19.5.** `jmqaly` declared `version 18` until now. This is
   `jmqaly`'s own floor and not one inherited from its engine: the released
   `merlin` 2.5.0 declares `version 15.1`, so anyone reading the previous
   README — which said 19.5 "is what `merlin` requires" — was reading something

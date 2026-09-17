@@ -1,4 +1,4 @@
-*! version 1.6.4 17sep2026 MJC & AG
+*! version 1.6.5 17sep2026 MJC & AG
 
 /*
 - postestimation command following a joint model estimated with merlin

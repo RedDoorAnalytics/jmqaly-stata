@@ -1,5 +1,5 @@
 {smcl}
-{* *! version 1.6.4  17sep2026}{...}
+{* *! version 1.6.5  17sep2026}{...}
 {vieweralsosee "merlin" "help merlin"}{...}
 {vieweralsosee "merlin postestimation" "help merlin_postestimation"}{...}
 {viewerjumpto "Syntax" "jmqaly##syntax"}{...}
@@ -23,7 +23,7 @@
 {pstd}
 {cmd:jmqaly} is for use after {helpb merlin} has fitted a joint
 longitudinal-survival model. It is not an estimation command. It requires
-Stata {bf:19.5} and {cmd:merlin} {bf:2.5.0} specifically.
+StataNow {bf:19.5} and {cmd:merlin} {bf:2.5.0} specifically.
 
 {synoptset 30 tabbed}{...}
 {synopthdr:options}

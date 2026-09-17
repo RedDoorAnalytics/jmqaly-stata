@@ -34,7 +34,7 @@ remaining" is a statement a reader can check; "integrated to infinity" is not.
 
 ## Requirements
 
-- **StataNow/MP 19.5.**
+- **StataNow 19.5.**
 - **[`merlin`](https://github.com/RedDoorAnalytics/merlin) 2.5.0**, and that
   version specifically. It is the released `merlin`, so it is what
   `net install` from the `merlin` repository gives you. `jmqaly` checks for it
