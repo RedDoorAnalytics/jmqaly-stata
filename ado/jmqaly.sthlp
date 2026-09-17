@@ -1,5 +1,5 @@
 {smcl}
-{* *! version 1.6.3  17sep2026}{...}
+{* *! version 1.6.4  17sep2026}{...}
 {vieweralsosee "merlin" "help merlin"}{...}
 {vieweralsosee "merlin postestimation" "help merlin_postestimation"}{...}
 {viewerjumpto "Syntax" "jmqaly##syntax"}{...}
@@ -170,6 +170,12 @@ or the restricted mean survival time for the same covariate pattern. They are
 the two components of the QALY integrand, and are useful for checking a fit.
 Only one may be given, and neither may be combined with {opt drate()} or
 {opt transform}, which apply only to the QALY.
+
+{pstd}
+They are diagnostics for the QALY rather than general-purpose predictions, so
+a fit {cmd:jmqaly} cannot compute a QALY from is refused whichever of the three
+is asked for. For a marginal survival curve from such a fit, use
+{helpb merlin_postestimation:predict} after {cmd:merlin}.
 
 {phang}
 {opt drate(#)} discounts future quality-adjusted survival, weighting the

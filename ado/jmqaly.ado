@@ -1,4 +1,4 @@
-*! version 1.6.3 17sep2026 MJC & AG
+*! version 1.6.4 17sep2026 MJC & AG
 
 /*
 - postestimation command following a joint model estimated with merlin
@@ -383,32 +383,43 @@ program define jmqaly, rclass
 	// time-dependent effect, only forces merlin to integrate the cumulative
 	// hazard numerically instead of using the closed form.
 	//
-	// Scoped to the QALY. survival and rmst never touch the quality of life
-	// submodel, so refusing them for its timevar would be refusing a fit that
-	// is perfectly adequate for what was asked.
-	if "`survival'"=="" & "`rmst'"=="" {
-		if "`e(timevar`jmqaly_xtmodel')'"=="" {
-			di as error ///
+	// A FIT jmqaly CANNOT COMPUTE A QALY FROM IS REFUSED OUTRIGHT, whatever
+	// prediction is asked for. The two checks below therefore apply to
+	// survival and rmst as well, and that is deliberate.
+	//
+	// The tempting scoping is the opposite one: survival and rmst read the
+	// SURVIVAL submodel only, so neither strictly needs the quality of life
+	// submodel to be usable. But jmqaly is a QALY command, and its own help
+	// calls survival and rmst "the two components of the QALY integrand,
+	// useful for checking a fit". Serving them off a fit whose QALY jmqaly
+	// would refuse means answering a diagnostic question about a quantity it
+	// will not compute. Anyone who wants a marginal survival curve from such
+	// a fit should ask merlin's own predict, which is the general-purpose
+	// tool and answers it.
+	//
+	// So the gate is on the FIT, not on the prediction. Michael's call,
+	// 2026-09-17, after a brief period in which the timevar() check was
+	// scoped to the QALY and the family check was made to match it.
+	if "`e(timevar`jmqaly_xtmodel')'"=="" {
+		di as error ///
 	"the quality of life submodel was fitted without timevar()"
-			di as error ///
+		di as error ///
 	"  submodel `jmqaly_xtmodel' has no time variable recorded, so merlin cannot"
-			di as error ///
+		di as error ///
 	"  re-evaluate the trajectory at the quadrature nodes the QALY integrates"
-			di as error ///
+		di as error ///
 	"  over, and the result would be silently wrong rather than an error."
-			di as error ///
+		di as error ///
 	"  Refit with timevar() on that submodel, naming the variable that carries"
-			di as error ///
+		di as error ///
 	"  time in it. The survival submodel does not need one."
-			exit 198
-		}
+		exit 198
 	}
 
-	// merlin supplies an expected value only for the families listed in
-	// merlin_setup_EV_p(); for any other the pointer it hands back is not a
-	// function, and merlin_util_expval() fails deep in mata with "matrix
-	// found where function required". Refuse here instead, by name. This
-	// list mirrors merlin's and has to grow with it.
+	// merlin supplies an expected value only for a fixed list of families;
+	// for any other the pointer it hands back is not a function and the
+	// evaluation fails deep in mata. Refuse here instead, by name. This list
+	// mirrors merlin's and has to grow with it.
 	local evfams gaussian bernoulli gamma poisson beta null
 	local qolfam "`e(family`jmqaly_xtmodel')'"
 	if !`: list qolfam in evfams' {

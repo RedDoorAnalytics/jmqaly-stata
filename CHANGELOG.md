@@ -1,5 +1,21 @@
 # Changelog
 
+## v1.6.4   17sep2026
+
+### Changed
+
+- **A fit `jmqaly` cannot compute a QALY from is now refused whichever
+  prediction is asked for**, including `survival` and `rmst`. Those two are
+  diagnostics for the QALY rather than general-purpose predictions — the help
+  calls them the two components of its integrand — so serving them off a fit
+  whose QALY would be refused means answering a diagnostic about a quantity
+  the command will not produce.
+
+  This makes the rule uniform across both gates: an unsupported quality of
+  life family, and a quality of life submodel fitted without `timevar()`. For
+  a marginal survival curve from such a fit, use `predict` after `merlin`,
+  which is the general-purpose tool and answers it.
+
 ## v1.6.3   17sep2026
 
 ### Changed
