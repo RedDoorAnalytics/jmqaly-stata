@@ -1,0 +1,6 @@
+*.stswp
+*.stpr
+*.log
+*.smcl
+.DS_Store
+cert/RESULTS.json

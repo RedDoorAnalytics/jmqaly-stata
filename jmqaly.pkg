@@ -1,0 +1,10 @@
+v 3
+d jmqaly: quality-adjusted life years after a joint model fitted with merlin
+d Authors: Michael J. Crowther, Alessandro Gasparini
+d Distribution-Date: 20260917
+d
+d Requires Stata 19.5 and merlin 2.5.0 specifically -- see help jmqaly.
+f ado/jmqaly.ado
+f ado/jmqaly.sthlp
+f ljmqaly.mlib
+e

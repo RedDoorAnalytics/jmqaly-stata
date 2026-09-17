@@ -1,0 +1,3 @@
+v 3
+d Stata package for quality-adjusted life years after joint longitudinal-survival models
+p jmqaly
